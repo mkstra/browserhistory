@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import sqlite3
 import pandas as pd
 import sys, getopt
