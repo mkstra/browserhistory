@@ -16,3 +16,10 @@ and after that (if you want the fulltext of the urls) run:
 All together now with params:
 `python fetch_history.py markus brave && python clean_history.py && python posts_only.py`
 
+# On NixOS
+
+`niv init`
+
+`nix-shell shell.nix`
+
+`python fetch_history.py markus brave && python clean_history.py && python posts_only.py`

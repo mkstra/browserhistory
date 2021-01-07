@@ -1,8 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 import sqlite3
 import pandas as pd
 import sys, getopt
 import datetime
+import os
 
 
 #IF you get "database is locked" -> close Chrome / Brave browser
@@ -15,7 +16,9 @@ def convertChromeTime(ms):
 
 def main(user, browser="chrome"):
     browser_data = "BraveSoftware/Brave-Browser" if browser == "brave" else "Google/Chrome"
-    path = "/Users/{user}/Library/Application Support/{data}/Default/History".format(user=user, data=browser_data)
+    # TODO avoid hardcoded path
+    # path = "/Users/{user}/Library/Application Support/{data}/Default/History".format(user=user, data=browser_data)
+    path = "/home/{user}/.config/chromium/Default/History".format(user=user, data=browser_data)
     print("...getting history data from ", path)
     conn = sqlite3.connect(path)
 
@@ -27,7 +30,12 @@ def main(user, browser="chrome"):
     df['visit_duration'] = df['visit_duration'].apply(lambda x: x/1000000.) # convert into seconds
     df['visit_time'] = df['visit_time'].apply(convertChromeTime)
     print(df[:5])
-    df.to_csv ("out/data.csv", index = False, header=True)
+    outname = 'data.csv'
+    outdir = './out'
+    if not os.path.exists(outdir):
+        os.mkdir(outdir)
+    fullname = os.path.join(outdir, outname)
+    df.to_csv (fullname, index = False, header=True)
 
 #df = pd.read_sql_query("select * from urls", conn)
 if __name__ == "__main__":
