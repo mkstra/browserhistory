@@ -26,6 +26,8 @@ def main(user, browser="chrome"):
 
     df['visit_duration'] = df['visit_duration'].apply(lambda x: x/1000000.) # convert into seconds
     df['visit_time'] = df['visit_time'].apply(convertChromeTime)
+    
+    df["name"] = user 
     print(df[:5])
     df.to_csv ("out/data.csv", index = False, header=True)
 

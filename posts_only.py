@@ -85,6 +85,8 @@ def get_p_text_safe(url):
         return ""
     return ""
 
+
+#TODO make this an argument
 def is_post(text):
     """an incredibly complex classifier. State of the Art"""
     return len(text.split(" ")) > 300
@@ -95,6 +97,8 @@ cleaned = pd.read_csv("out/cleaned.csv")
 cleaned = cleaned[:100]
 # print(is_post("https://dacapo.io/questions"), "is post?")
 
+
+#Comment this out if you want a smaller file (no fulltext)
 cleaned["text"] = cleaned["url"].map(get_p_text_safe)
 
 is_post_mask = [is_post(text) for text in cleaned.text]

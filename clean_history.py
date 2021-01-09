@@ -6,13 +6,6 @@ import sys
 # Initiate the parser
 from params import blacklist
 
-# Read arguments from the command line
-
-# stop_urls = ["chrome.google", "github.com", "tiktok.", "facebook.com", "roamresearch.com", ".pdf", 
-# "amazon.", "airbnb.", "/video", "linkedin.", "libgen.", "google.com", 
-# "file:///", "google.com", "duckduckgo.com", "twitter.com", "jitsi.", 
-# "slack.com", "youtube.com", "reddit.com", "meet.", "/accounts", "/billing", "stackoverflow.com"]
-
 parser = argparse.ArgumentParser()
 parser.add_argument("--path", help="csv location")
 parser.add_argument("--visit_duration", help=" minimum seconds a url was -visited-?")
@@ -20,13 +13,12 @@ parser.add_argument("--visit_duration", help=" minimum seconds a url was -visite
 parser.add_argument("--hard", help=" thorough cleaning that uses web scraping information?")
 
 
-def main():
+def main(path, visit_duration):
 
-    args = parser.parse_args()
 
-    history = pd.read_csv(args.path or "out/data.csv")
+    history = pd.read_csv(path or "out/data.csv")
 
-    min_visit_duration = 200 or args.visit_duration
+    min_visit_duration = 200 or visit_duration
     print(len(history)," initial entries")
 
     url_mask = [np.sum([u in v for u in blacklist]) == 0 for v in history.url]
@@ -48,4 +40,5 @@ def main():
 
 
 if __name__ == "__main__":
-   main()
+    args = parser.parse_args()
+    main(args.path, args.visit_duration)
