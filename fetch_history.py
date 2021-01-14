@@ -17,8 +17,8 @@ def convertChromeTime(ms):
 def main(user, browser="chrome"):
     browser_data = "BraveSoftware/Brave-Browser" if browser == "brave" else "Google/Chrome"
     # TODO avoid hardcoded path
-    # path = "/Users/{user}/Library/Application Support/{data}/Default/History".format(user=user, data=browser_data)
-    path = "/home/{user}/.config/chromium/Default/History".format(user=user, data=browser_data)
+    path = "/Users/{user}/Library/Application Support/{data}/Default/History".format(user=user, data=browser_data)
+    #path = "/home/{user}/.config/chromium/Default/History".format(user=user, data=browser_data)
     print("...getting history data from ", path)
     conn = sqlite3.connect(path)
 

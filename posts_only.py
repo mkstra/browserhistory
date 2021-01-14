@@ -46,9 +46,6 @@ def bs_to_text(soup, strip=True):
   """ Extracts all the text from a Beautiful soup object. """
   return soup.get_text(strip=strip)
 
-def bs_to_paragraphs(soup, tag, tag_filter, strip=True):
-  """ Extracts all the text from the given tags and returns them as a list. """
-  return [paragraph.get_text(strip=strip) for paragraph in soup.findAll(tag, tag_filter)]
 
 def exception_handler(func):
     def inner_function(*args, **kwargs):
@@ -58,9 +55,6 @@ def exception_handler(func):
             print(f"{func.__name__} only takes numbers as the argument")
     return inner_function    
 
-def bs_to_paragraphs(soup, tag, tag_filter, strip=True):
-  """ Extracts all the text from the given tags and returns them as a list. """
-  return [paragraph.get_text(strip=strip) for paragraph in soup.findAll(tag, tag_filter)]
 
 url_to_text = pipe(url_to_html,
                       html_to_bs,
@@ -98,9 +92,7 @@ cleaned = cleaned[:100]
 # print(is_post("https://dacapo.io/questions"), "is post?")
 
 
-#Comment this out if you want a smaller file (no fulltext)
 cleaned["text"] = cleaned["url"].map(get_p_text_safe)
-
 is_post_mask = [is_post(text) for text in cleaned.text]
 post_df = cleaned[is_post_mask]
 
