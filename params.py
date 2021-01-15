@@ -2,7 +2,7 @@
 
 blacklist =  ["chrome.google", "github.com", "tiktok.", "facebook.com", "roamresearch.com", ".pdf", 
 "amazon.", "airbnb.", "/video", "/docs", "linkedin.", "libgen.", "google.com", 
-"file:///", "google.com", "duckduckgo.com", "jitsi.", 
+"file:///", "dev.to", "google.com", "duckduckgo.com", "jitsi.", 
 "slack.com", "youtube.com", "reddit.com", "meet.", "/accounts", "/billing", 
 "calendar", "porn",
 "stackoverflow.com",

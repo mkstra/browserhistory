@@ -14,10 +14,15 @@ def convertChromeTime(ms):
     return datetime.datetime(1601, 1, 1) + datetime.timedelta(microseconds=ms)
 
 
-def main(user, browser="chrome"):
+def main(user, browser="chrome", os="mac"):
     browser_data = "BraveSoftware/Brave-Browser" if browser == "brave" else "Google/Chrome"
     # TODO avoid hardcoded path
-    path = "/Users/{user}/Library/Application Support/{data}/Default/History".format(user=user, data=browser_data)
+    path = "/Users/{user}/Library/Application Support/{browser_data}/Default/History".format(user=user, browser_data=browser_data)
+    
+    if (os=="windows"):
+        browser_data = "BraveSoftware\Brave-Browser" if browser == "brave" else "Google\Chrome"
+        path = r'C:\Users\{user}\AppData\Local\{browser_data}\User Data\Default\History'.format(user=user, browser_data=browser_data)
+
     #path = "/home/{user}/.config/chromium/Default/History".format(user=user, data=browser_data)
     print("...getting history data from ", path)
     conn = sqlite3.connect(path)
@@ -41,4 +46,4 @@ def main(user, browser="chrome"):
 
 #df = pd.read_sql_query("select * from urls", conn)
 if __name__ == "__main__":
-   main(sys.argv[1], sys.argv[2])
+   main(sys.argv[1], sys.argv[2], sys.argv[3] if 3 < len(sys.argv) else None)
