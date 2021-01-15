@@ -18,13 +18,12 @@ def main(path, visit_duration):
 
     history = pd.read_csv(path or "out/data.csv")
 
-    min_visit_duration = 200 or visit_duration
+    min_visit_duration = 120 or visit_duration
     print(len(history)," initial entries")
 
-    url_mask = [np.sum([u in v for u in blacklist]) == 0 for v in history.url]
-    len(history[url_mask])
+    legit_url = [np.sum([u in v for u in blacklist]) == 0 for v in history.url]
 
-    c = history[url_mask]
+    c = history[legit_url]
     not_homepage_mask = [True if len([_ for _ in url.split("/") if _]) > 2 else False for url in c.url ]
 
     cleaned = c[not_homepage_mask]
