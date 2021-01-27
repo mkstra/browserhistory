@@ -1,7 +1,7 @@
 {
   "blacklist": [
-    "chrome.google", "gmail.com", "protonmail.com",
-    "github.com",
+    "chrome.google", "gmail.com", "protonmail.com", "flights/", "skipplagged", "calendly.", "news/", "news.", "finance.", "yahoo", "sex",
+    "github.com", "sign-up/", "sign-in/", "login/",
     "tiktok.",
     "facebook.com",
     "roamresearch.com",
