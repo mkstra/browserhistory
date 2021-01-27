@@ -1,6 +1,6 @@
 {
   "blacklist": [
-    "chrome.google",
+    "chrome.google", "google.com", "gmail.com", "protonmail.com",
     "github.com",
     "tiktok.",
     "facebook.com",
@@ -19,7 +19,6 @@
     "duckduckgo.com",
     "jitsi.",
     "slack.com",
-    "youtube.com",
     "reddit.com",
     "meet.",
     "/accounts",
